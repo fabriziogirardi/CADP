@@ -2,7 +2,7 @@ program Practica_4_1_Ejercicio_8;
 
 { Constantes del programa }
 const
-  ReadCount = 400;
+  ReadCount = 5;
 
 { Tipo de datos }
 type
@@ -23,25 +23,10 @@ type
 
   studentArray = array[arrayRange] of student;
 
-{ Cargar los estudiantes en el array }
-procedure loadStudents(var students: studentArray, var evenIdNumbers: integer);
-var
-  i: integer;
-begin
-  { Carga los datos de cada estudiante }
-  for i := 1 to ReadCount do begin
-    loadStudent(students[i]);
-    { Cuenta los estudiantes con DNI par }
-    if evenIdNumber(students[i]) then begin
-      evenIdNumbers := evenIdNumbers + 1;
-    end;
-  end;
-end;
-
 { Cargar los datos de un estudiante }
-procedure loadStudent(student: student);
+procedure loadStudent(var student: student; i: integer);
 begin
-  with students[i] do begin
+  with student do begin
     writeln('Ingrese los datos del estudiante ', i, ':');
     write('Numero de inscripcion: ');
     readln(inscriptionNumber);
@@ -75,6 +60,21 @@ begin
   end;
 
   evenIdNumber := isAllEven;
+end;
+
+{ Cargar los estudiantes en el array }
+procedure loadStudents(var students: studentArray; var evenIdNumbers: integer);
+var
+  i: integer;
+begin
+  { Carga los datos de cada estudiante }
+  for i := 1 to ReadCount do begin
+    loadStudent(students[i], i);
+    { Cuenta los estudiantes con DNI par }
+    if evenIdNumber(students[i]) then begin
+      evenIdNumbers := evenIdNumbers + 1;
+    end;
+  end;
 end;
 
 { Porcentaje de estudiantes con DNI par }
