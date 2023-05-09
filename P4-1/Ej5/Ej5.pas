@@ -8,10 +8,10 @@ const
 type
   arrayRange = 1..arraySize;
   arrayType = array[arrayRange] of integer;
-  dimFRange = 0..arraySize;
+  dimLRange = 0..arraySize;
 
 var
-  dimF: dimFRange;
+  dimL: dimLRange;
 
 { Obtiene la posición de un elemento en un array y la retorna. En caso de no encontrarlo, retorna -1. }
 function getPosition(arr: arrayType; item: integer): integer;
@@ -19,7 +19,7 @@ var
   i: integer;
 begin
   i := 1;
-  while (arr[i] <> item) and (i <= dimF) do
+  while (arr[i] <> item) and (i <= dimL) do
     i := i + 1;
   
   if (arr[i] = item) then
@@ -44,7 +44,7 @@ var
   i, sum: integer;
 begin
   sum := 0;
-  for i := 1 to dimF do
+  for i := 1 to dimL do
     sum := sum + arr[i];
   
   sumArray := sum;
@@ -63,7 +63,7 @@ var
 begin
   max := arr[1];
   pos := 1;
-  for i := 2 to dimF do
+  for i := 2 to dimL do
     if (arr[i] > max) then begin
       max := arr[i];
       pos := i;
@@ -79,7 +79,7 @@ var
 begin
   min := arr[1];
   pos := 1;
-  for i := 2 to dimF do
+  for i := 2 to dimL do
     if (arr[i] < min) then begin
       min := arr[i];
       pos := i;
@@ -99,9 +99,9 @@ begin
   { Lectura de datos }
   writeln('Ingrese los elementos del array (0 para terminar): ');
   repeat
-    dimF := dimF + 1;
-    readln(arr[dimF]);
-  until (arr[dimF] = 0) or (dimF = arraySize);
+    dimL := dimL + 1;
+    readln(arr[dimL]);
+  until (arr[dimL] = 0) or (dimL = arraySize);
 
   { Procesamiento de datos }
   maxPos := getMax(arr);
